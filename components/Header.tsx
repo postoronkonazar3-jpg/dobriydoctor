@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { Phone, Calendar, Menu, X, Heart, Clock, MapPin, MessageCircle } from 'lucide-react';
 
 interface HeaderProps {
@@ -134,8 +135,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenCallback })
             }}
             className="flex items-center gap-3 group"
           >
-            <div className="w-11 h-11 rounded-full bg-[#EAF4FC] flex items-center justify-center text-[#4FA8E8] group-hover:scale-105 transition-transform">
-              <Heart className="w-6 h-6 fill-[#4FA8E8]/20" />
+            <div className="w-11 h-11 rounded-full overflow-hidden bg-[#EAF4FC] flex items-center justify-center group-hover:scale-105 transition-transform border border-slate-200 shrink-0">
+              <Image
+                src="https://res.cloudinary.com/daq51lz0x/image/upload/v1785002394/images_hqbltb.jpg"
+                alt="Добрий доктор логотип"
+                width={44}
+                height={44}
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <div>
               <span className="text-xl font-bold tracking-tight text-[#1A2B3C] flex items-center gap-1">

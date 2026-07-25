@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Heart, Phone, MapPin, Clock, ArrowUp } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -38,8 +39,15 @@ export const Footer: React.FC = () => {
           {/* Column 1: Brand & Logo */}
           <div className="space-y-4">
             <a href="#hero" className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-full bg-[#4FA8E8] flex items-center justify-center text-white">
-                <Heart className="w-6 h-6 fill-white/20" />
+              <div className="w-11 h-11 rounded-full overflow-hidden bg-white/10 flex items-center justify-center text-white shrink-0 border border-slate-700">
+                <Image
+                  src="https://res.cloudinary.com/daq51lz0x/image/upload/v1785002394/images_hqbltb.jpg"
+                  alt="Добрий доктор логотип"
+                  width={44}
+                  height={44}
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
               </div>
               <div>
                 <span className="text-xl font-bold tracking-tight text-white block">
