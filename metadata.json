@@ -1,0 +1,6 @@
+{
+  "name": "Добрий доктор - Ветеринарна клініка",
+  "description": "Офіційний сайт ветеринарної клініки «Добрий доктор» — цілодобова терапія, хірургія, діагностика та турбота про тварин.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
