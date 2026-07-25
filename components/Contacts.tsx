@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, AlertCircle, Navigation } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, AlertCircle, Navigation, MessageCircle } from 'lucide-react';
 
 export const Contacts: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -229,8 +229,12 @@ export const Contacts: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-[#1A2B3C] text-sm">Гарячі телефони</h4>
-                  <p className="text-xs text-gray-600">+38 (044) 123-45-67</p>
-                  <p className="text-xs text-gray-600">+38 (067) 890-12-34</p>
+                  <a href="tel:+380962030411" className="text-xs text-gray-700 font-semibold hover:text-[#4FA8E8] transition-colors block">
+                    +38 (096) 203-04-11 (Viber / Telegram)
+                  </a>
+                  <a href="tel:+380441234567" className="text-xs text-gray-600 hover:text-[#4FA8E8] transition-colors block mt-0.5">
+                    +38 (044) 123-45-67 (Міський)
+                  </a>
                 </div>
               </div>
 
@@ -245,6 +249,42 @@ export const Contacts: React.FC = () => {
                 </div>
               </div>
 
+            </div>
+
+            {/* Telegram & Viber Direct Messenger Card */}
+            <div className="bg-gradient-to-r from-[#EAF4FC] to-[#F3F8FD] p-5 rounded-2xl border border-[#4FA8E8]/20 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="font-bold text-[#1A2B3C] text-sm flex items-center gap-2">
+                    Напишіть нам у месенджери
+                  </h4>
+                  <p className="text-xs text-gray-600 mt-0.5">Швидка відповідь за номером <span className="font-bold text-[#1A2B3C]">+380 (96) 203-04-11</span></p>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3 pt-1">
+                {/* Telegram Button */}
+                <a
+                  href="https://t.me/+380962030411"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#229ED9] hover:bg-[#1C82B3] text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2.5 text-sm active:scale-95"
+                >
+                  <svg className="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.51c-.15.68-.55.85-1.12.53l-3.08-2.27-1.49 1.43c-.16.16-.3.3-.61.3l.22-3.14 5.72-5.17c.25-.22-.05-.34-.39-.12l-7.07 4.45-3.05-.95c-.66-.21-.68-.66.14-.98l11.92-4.59c.55-.2 1.04.14.83.98z"/>
+                  </svg>
+                  <span>Написати у Telegram</span>
+                </a>
+
+                {/* Viber Button */}
+                <a
+                  href="viber://chat?number=+380962030411"
+                  className="w-full bg-[#7360F2] hover:bg-[#5E4CD4] text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2.5 text-sm active:scale-95"
+                >
+                  <MessageCircle className="w-5 h-5 shrink-0" />
+                  <span>Написати у Viber</span>
+                </a>
+              </div>
             </div>
 
             {/* Embedded Google Maps Placeholder */}

@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Phone, Calendar, Menu, X, Heart, Clock, MapPin } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { Phone, Calendar, Menu, X, Heart, Clock, MapPin, MessageCircle } from 'lucide-react';
 
 interface HeaderProps {
   onOpenBooking: () => void;
@@ -11,6 +12,8 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenCallback }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,9 +37,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenCallback })
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
+
+    if (pathname === '/') {
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      // If we are on /services or another subpage
+      if (href === '#services') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        router.push('/' + href);
+      }
     }
   };
 
@@ -54,16 +69,46 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenCallback })
               <MapPin className="w-3.5 h-3.5 text-[#4FA8E8]" /> м. Київ, вул. Героїв Дніпра, 38А
             </span>
           </div>
-          <div className="flex items-center gap-3">
+
+          <div className="flex items-center gap-3 flex-wrap justify-center">
+            {/* Telegram & Viber buttons */}
+            <div className="flex items-center gap-1.5">
+              <a
+                href="https://t.me/+380962030411"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#229ED9]/20 hover:bg-[#229ED9] text-[#229ED9] hover:text-white px-2.5 py-0.5 rounded-full font-bold text-[11px] transition-all flex items-center gap-1"
+                title="Написати у Telegram"
+              >
+                <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.51c-.15.68-.55.85-1.12.53l-3.08-2.27-1.49 1.43c-.16.16-.3.3-.61.3l.22-3.14 5.72-5.17c.25-.22-.05-.34-.39-.12l-7.07 4.45-3.05-.95c-.66-.21-.68-.66.14-.98l11.92-4.59c.55-.2 1.04.14.83.98z"/>
+                </svg>
+                Telegram
+              </a>
+
+              <a
+                href="viber://chat?number=+380962030411"
+                className="bg-[#7360F2]/20 hover:bg-[#7360F2] text-[#7360F2] hover:text-white px-2.5 py-0.5 rounded-full font-bold text-[11px] transition-all flex items-center gap-1"
+                title="Написати у Viber"
+              >
+                <MessageCircle className="w-3 h-3" />
+                Viber
+              </a>
+            </div>
+
+            <span className="text-gray-500">•</span>
+
             <button
               onClick={onOpenCallback}
               className="text-[#4FA8E8] hover:text-white underline text-xs transition-colors"
             >
               Замовити дзвінок
             </button>
+
             <span className="text-gray-500">•</span>
-            <a href="tel:+380441234567" className="font-semibold text-white hover:text-[#4FA8E8] transition-colors flex items-center gap-1">
-              <Phone className="w-3 h-3 text-[#4FA8E8]" /> +38 (044) 123-45-67
+
+            <a href="tel:+380962030411" className="font-semibold text-white hover:text-[#4FA8E8] transition-colors flex items-center gap-1">
+              <Phone className="w-3 h-3 text-[#4FA8E8]" /> +38 (096) 203-04-11
             </a>
           </div>
         </div>
@@ -79,7 +124,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenCallback })
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <a href="#hero" className="flex items-center gap-3 group">
+          <a
+            href="/"
+            onClick={(e) => {
+              if (pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+            className="flex items-center gap-3 group"
+          >
             <div className="w-11 h-11 rounded-full bg-[#EAF4FC] flex items-center justify-center text-[#4FA8E8] group-hover:scale-105 transition-transform">
               <Heart className="w-6 h-6 fill-[#4FA8E8]/20" />
             </div>
@@ -98,7 +152,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenCallback })
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={pathname === '/' ? link.href : '/' + link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="text-sm font-medium text-[#1A2B3C] hover:text-[#4FA8E8] transition-colors py-1 relative group"
               >
@@ -111,11 +165,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenCallback })
           {/* Action buttons */}
           <div className="hidden sm:flex items-center gap-3">
             <a
-              href="tel:+380678901234"
+              href="tel:+380962030411"
               className="hidden xl:flex flex-col text-right pr-2 text-xs"
             >
               <span className="text-gray-400">Гаряча лінія</span>
-              <span className="font-bold text-[#1A2B3C] hover:text-[#4FA8E8]">+38 (067) 890-12-34</span>
+              <span className="font-bold text-[#1A2B3C] hover:text-[#4FA8E8]">+38 (096) 203-04-11</span>
             </a>
             <button
               onClick={onOpenBooking}
@@ -143,7 +197,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenCallback })
               {navLinks.map((link) => (
                 <a
                   key={link.name}
-                  href={link.href}
+                  href={pathname === '/' ? link.href : '/' + link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="px-3 py-2 rounded-lg text-base font-medium text-[#1A2B3C] hover:bg-[#EAF4FC] hover:text-[#4FA8E8] transition-colors"
                 >
@@ -151,6 +205,33 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBooking, onOpenCallback })
                 </a>
               ))}
             </nav>
+
+            {/* Telegram & Viber in Mobile Menu */}
+            <div className="p-3 bg-[#EAF4FC]/50 rounded-2xl flex flex-col gap-2">
+              <p className="text-xs font-bold text-[#1A2B3C] text-center">Написати нам у месенджери:</p>
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href="https://t.me/+380962030411"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#229ED9] text-white py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.51c-.15.68-.55.85-1.12.53l-3.08-2.27-1.49 1.43c-.16.16-.3.3-.61.3l.22-3.14 5.72-5.17c.25-.22-.05-.34-.39-.12l-7.07 4.45-3.05-.95c-.66-.21-.68-.66.14-.98l11.92-4.59c.55-.2 1.04.14.83.98z"/>
+                  </svg>
+                  Telegram
+                </a>
+
+                <a
+                  href="viber://chat?number=+380962030411"
+                  className="bg-[#7360F2] text-white py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Viber
+                </a>
+              </div>
+            </div>
+
             <div className="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
               <button
                 onClick={() => {

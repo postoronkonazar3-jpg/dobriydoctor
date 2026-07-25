@@ -238,7 +238,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
                 <div>
                   <label className="block text-xs font-semibold text-[#1A2B3C] mb-1">
-                    Бажаний час (крок 30 хв)
+                    Бажаний час
                   </label>
                   <select
                     value={formData.time}

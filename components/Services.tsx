@@ -106,25 +106,13 @@ export const Services: React.FC<ServicesProps> = ({ onOpenBooking, onOpenCallbac
         </div>
 
         {/* Active Tab Panel Banner */}
-        <div className="bg-gradient-to-r from-[#EAF4FC] via-[#F4F9FE] to-white p-6 sm:p-8 rounded-3xl border border-[#4FA8E8]/20 mb-8 grid lg:grid-cols-12 gap-8 items-center shadow-xs">
-          <div className="lg:col-span-8 space-y-3">
+        <div className="bg-gradient-to-r from-[#EAF4FC] via-[#F4F9FE] to-white p-6 sm:p-8 rounded-3xl border border-[#4FA8E8]/20 mb-8 shadow-xs">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 text-[#4FA8E8] font-bold text-xs uppercase tracking-wider">
               <CheckCircle className="w-4 h-4" /> {activeCategory.badge || 'Напрямок лікування'}
             </div>
             <h3 className="text-2xl font-bold text-[#1A2B3C]">{activeCategory.name}</h3>
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{activeCategory.description}</p>
-          </div>
-
-          <div className="lg:col-span-4 flex justify-center">
-            <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden shadow-md border-2 border-white">
-              <Image
-                src={activeCategory.imageUrl}
-                alt={activeCategory.name}
-                fill
-                className="object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-4xl">{activeCategory.description}</p>
           </div>
         </div>
 

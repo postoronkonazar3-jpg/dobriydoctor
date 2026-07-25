@@ -177,10 +177,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking, onOpenCallback }) => 
             </div>
             <div>
               <p className="text-xs font-semibold text-[#4FA8E8] uppercase tracking-wider">Телефони клініки</p>
-              <p className="font-bold text-[#1A2B3C] text-sm sm:text-base">
-                +38 (044) 123-45-67
-              </p>
-              <p className="text-xs text-[#4FA8E8] font-medium">+38 (067) 890-12-34 (Мобільний)</p>
+              <a href="tel:+380962030411" className="font-bold text-[#1A2B3C] text-sm sm:text-base hover:text-[#4FA8E8] transition-colors block">
+                +38 (096) 203-04-11
+              </a>
+              <p className="text-xs text-[#4FA8E8] font-medium">Viber / Telegram / Дзвінки</p>
             </div>
           </div>
 

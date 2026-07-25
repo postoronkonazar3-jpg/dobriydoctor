@@ -87,14 +87,27 @@ export const Footer: React.FC = () => {
 
                 {/* Telegram */}
                 <a
-                  href="https://t.me"
+                  href="https://t.me/+380962030411"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#4FA8E8] text-white flex items-center justify-center transition-colors"
+                  className="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#229ED9] text-white flex items-center justify-center transition-colors"
                   aria-label="Telegram"
+                  title="Telegram"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                     <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.51c-.15.68-.55.85-1.12.53l-3.08-2.27-1.49 1.43c-.16.16-.3.3-.61.3l.22-3.14 5.72-5.17c.25-.22-.05-.34-.39-.12l-7.07 4.45-3.05-.95c-.66-.21-.68-.66.14-.98l11.92-4.59c.55-.2 1.04.14.83.98z"/>
+                  </svg>
+                </a>
+
+                {/* Viber */}
+                <a
+                  href="viber://chat?number=+380962030411"
+                  className="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#7360F2] text-white flex items-center justify-center transition-colors"
+                  aria-label="Viber"
+                  title="Viber"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M11.39 0C5.35 0 .48 4.44.48 10.15c0 3.23 1.58 6.13 4.08 8.04l-.62 3.23c-.08.43.32.79.73.65l3.65-1.28c.99.27 2.02.42 3.07.42 6.04 0 10.91-4.44 10.91-10.15S17.43 0 11.39 0zm.83 14.61c-2.88 0-5.22-2.34-5.22-5.22s2.34-5.22 5.22-5.22 5.22 2.34 5.22 5.22-2.34 5.22-5.22 5.22z"/>
                   </svg>
                 </a>
 
@@ -165,14 +178,14 @@ export const Footer: React.FC = () => {
               </p>
               <p className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#4FA8E8] shrink-0" />
-                <a href="tel:+380441234567" className="hover:text-[#4FA8E8] transition-colors">
-                  +38 (044) 123-45-67
+                <a href="tel:+380962030411" className="hover:text-[#4FA8E8] transition-colors font-bold text-white">
+                  +38 (096) 203-04-11 (Viber / Telegram)
                 </a>
               </p>
               <p className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#4FA8E8] shrink-0" />
-                <a href="tel:+380678901234" className="hover:text-[#4FA8E8] transition-colors">
-                  +38 (067) 890-12-34
+                <a href="tel:+380441234567" className="hover:text-[#4FA8E8] transition-colors">
+                  +38 (044) 123-45-67 (Міський)
                 </a>
               </p>
             </div>
